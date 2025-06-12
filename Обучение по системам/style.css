@@ -1,0 +1,108 @@
+/* Основной фирменный зеленый цвет */
+:root {
+  --freedom-green: #00995D;
+  --freedom-green-dark: #00794A;
+  --freedom-green-light: #E6F7F0;
+}
+
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+
+.navbar {
+  background: var(--freedom-green) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.navbar .navbar-brand span {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #fff;
+}
+
+.navbar .navbar-brand img {
+  background: #fff;
+  border-radius: 8px;
+  padding: 2px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.navbar .nav-link, .navbar .dropdown-item {
+  color: #fff !important;
+  transition: color 0.2s;
+}
+
+.navbar .nav-link.active, .navbar .nav-link:hover, .navbar .dropdown-item:hover {
+  color: var(--freedom-green) !important;
+  background: #fff !important;
+}
+
+.dropdown-menu {
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  border: none;
+}
+
+.list-group-item a {
+  color: var(--freedom-green);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.list-group-item a:hover {
+  color: var(--freedom-green-dark);
+  text-decoration: underline;
+}
+
+.list-group-item {
+  border-radius: 8px !important;
+  margin-bottom: 8px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--freedom-green-dark);
+  font-weight: 700;
+}
+
+.btn-primary, .accordion-button:not(.collapsed) {
+  background: var(--freedom-green) !important;
+  border-color: var(--freedom-green) !important;
+}
+
+.btn-primary:hover, .accordion-button:not(.collapsed):hover {
+  background: var(--freedom-green-dark) !important;
+  border-color: var(--freedom-green-dark) !important;
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0,153,93,0.15);
+}
+
+.accordion-item {
+  border-radius: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #e0e0e0;
+  overflow: hidden;
+}
+
+.container, .accordion {
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  padding: 24px 24px 16px 24px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .container, .accordion {
+    padding: 12px 6px 8px 6px;
+  }
+  .navbar .navbar-brand span {
+    font-size: 1rem;
+  }
+} 
