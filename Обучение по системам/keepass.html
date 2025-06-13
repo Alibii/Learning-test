@@ -3,78 +3,155 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KeePass — Обучение</title>
+  <title>KeePass — Обучение | Freedom Bank</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --freedom-green: #00995D; --freedom-green-dark: #00794A; --freedom-green-light: #E6F7F0; --gradient-green: linear-gradient(135deg, #00995D 0%, #00C853 100%); }
+    body { background-color: #f8f9fa; font-family: 'Montserrat', 'Segoe UI', sans-serif; overflow-x: hidden; }
+    .bg-animated { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: var(--gradient-green); opacity: 0.03; }
+    .bg-circle { position: absolute; border-radius: 50%; background: rgba(0, 153, 93, 0.05); animation: float 15s infinite ease-in-out; }
+    @keyframes float { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 25% { transform: translate(10vw, 5vh) rotate(5deg); } 50% { transform: translate(-5vw, 10vh) rotate(-5deg); } 75% { transform: translate(5vw, -5vh) rotate(3deg); } }
+    .navbar { background: rgba(0, 153, 93, 0.9) !important; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 4px 30px rgba(0, 153, 93, 0.15); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0 0 18px 18px; padding: 0.7rem 0; min-height: 70px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .navbar.scrolled { box-shadow: 0 8px 32px rgba(0, 153, 93, 0.2); min-height: 60px; }
+    .navbar-brand { font-weight: 700; letter-spacing: 0.5px; color: #fff !important; transition: all 0.3s; }
+    .navbar-brand:hover { transform: scale(1.02); }
+    .navbar-brand img { transition: all 0.3s; }
+    .navbar-brand:hover img { transform: rotate(-5deg); }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: 5px; left: 15px; width: calc(100% - 30px); height: 2px; background: white; transform: scaleX(0); transform-origin: right; transition: transform 0.3s; }
+    .nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+    .dropdown-menu { background: #fff; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,153,93,0.13), 0 2px 8px rgba(0,0,0,0.04); border: none; padding: 0.5rem 0.2rem; min-width: 220px; margin-top: 10px !important; animation: fadeInDropdown 0.35s cubic-bezier(.4,0,.2,1); }
+    @keyframes fadeInDropdown { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .dropdown-menu .dropdown-item { color: var(--freedom-green) !important; background: #fff !important; border-radius: 8px; margin: 2px 0; font-size: 1.08rem; font-weight: 600; padding: 0.6rem 1.2rem; transition: background 0.2s, color 0.2s; }
+    .dropdown-menu .dropdown-item:hover, .dropdown-menu .dropdown-item:focus { background: var(--freedom-green-light) !important; color: var(--freedom-green-dark) !important; }
+    .page-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; background: var(--gradient-green); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: fadeInUp 1s both; }
+    .section-card { background: white; border-radius: 16px; padding: 32px 28px; margin-bottom: 32px; box-shadow: 0 10px 30px rgba(0, 153, 93, 0.1); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(0, 153, 93, 0.1); position: relative; overflow: hidden; animation: fadeInUp 1s both; }
+    .section-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 15px 40px rgba(0, 153, 93, 0.18); }
+    .section-card h3 { color: var(--freedom-green-dark); font-weight: 600; margin-bottom: 18px; }
+    .section-card ul { margin-bottom: 0.8rem; }
+    .section-card ul li { margin-bottom: 0.4rem; font-size: 1.08rem; line-height: 1.6; }
+    .section-card .section-label { font-size: 1.1rem; color: var(--freedom-green); font-weight: 600; margin-bottom: 0.5rem; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 768px) { .page-title { font-size: 1.5rem; } .section-card { padding: 18px 8px; } }
+    footer { background: var(--freedom-green-dark); color: white; padding: 50px 0 20px; position: relative; margin-top: 80px; clip-path: ellipse(100% 100% at 50% 100%); }
+    footer::before { content: ''; position: absolute; top: -50px; left: 0; width: 100%; height: 50px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%2300794A' fill-opacity='1' d='M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat center top; background-size: 100% 100%; }
+    .footer-links a { color: white !important; text-decoration: none; margin: 0 15px; font-weight: 500; position: relative; transition: all 0.3s; }
+    .footer-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: white; transition: all 0.3s; }
+    .footer-links a:hover::after { width: 100%; }
+    .footer-contacts { color: #e6f7f0; }
+    .footer-contacts a { color: #e6f7f0; text-decoration: underline; }
+    .footer-contacts a:hover { color: #fff; }
+    .footer-copyright { color: #c8f7e5; }
+  </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container-fluid">
-    <a class="navbar-brand d-flex align-items-center" href="index.html">
-      <img src="Logo/Freedom-bank.png" alt="Freedom Bank" height="40" class="me-2" style="background: white; border-radius: 8px; padding: 2px;">
-      <span>Обучение по системам</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="systemsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Системы</a>
-          <ul class="dropdown-menu" aria-labelledby="systemsDropdown">
-            <li><a class="dropdown-item" href="utbp.html">УТБП ЮЛ</a></li>
-            <li><a class="dropdown-item" href="freedom-front.html">Freedom Front</a></li>
-            <li><a class="dropdown-item" href="colvir.html">Colvir</a></li>
-            <li><a class="dropdown-item" href="plsql.html">PL SQL Developer</a></li>
-            <li><a class="dropdown-item" href="swagger.html">Swagger</a></li>
-            <li><a class="dropdown-item" href="camunda.html">Camunda</a></li>
-            <li><a class="dropdown-item" href="graylog.html">Graylog</a></li>
-            <li><a class="dropdown-item" href="jira.html">Jira</a></li>
-            <li><a class="dropdown-item" href="confluence.html">Confluence</a></li>
-            <li><a class="dropdown-item" href="csc.html">CSC</a></li>
-            <li><a class="dropdown-item" href="winmerge.html">WinMerge</a></li>
-            <li><a class="dropdown-item" href="keepass.html">KeePass</a></li>
-          </ul>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
-        <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
+  <div class="bg-animated">
+    <div class="bg-circle" style="width: 300px; height: 300px; top: 10%; left: 5%;"></div>
+    <div class="bg-circle" style="width: 200px; height: 200px; top: 60%; left: 80%;"></div>
+    <div class="bg-circle" style="width: 150px; height: 150px; top: 30%; left: 70%;"></div>
+    <div class="bg-circle" style="width: 250px; height: 250px; top: 70%; left: 20%;"></div>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="Logo/Freedom-bank.png" alt="Freedom Bank" height="40" class="me-2" style="background: white; border-radius: 8px; padding: 2px;">
+        <span>Обучение по системам</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="systemsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Системы</a>
+            <ul class="dropdown-menu" aria-labelledby="systemsDropdown">
+              <li><a class="dropdown-item" href="utbp.html">УТБП ЮЛ</a></li>
+              <li><a class="dropdown-item" href="freedom-front.html">Freedom Front</a></li>
+              <li><a class="dropdown-item" href="colvir.html">Colvir</a></li>
+              <li><a class="dropdown-item" href="plsql.html">PL SQL Developer</a></li>
+              <li><a class="dropdown-item" href="swagger.html">Swagger</a></li>
+              <li><a class="dropdown-item" href="camunda.html">Camunda</a></li>
+              <li><a class="dropdown-item" href="graylog.html">Graylog</a></li>
+              <li><a class="dropdown-item" href="jira.html">Jira</a></li>
+              <li><a class="dropdown-item" href="confluence.html">Confluence</a></li>
+              <li><a class="dropdown-item" href="csc.html">CSC</a></li>
+              <li><a class="dropdown-item" href="winmerge.html">WinMerge</a></li>
+              <li><a class="dropdown-item" href="keepass.html">KeePass</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <section class="hero-section" style="padding: 90px 0 30px; text-align: center;">
+    <div class="container">
+      <h1 class="page-title animate__animated animate__fadeInDown">KeePass</h1>
+    </div>
+  </section>
+  <div class="container animate__animated animate__fadeInUp animate__delay-1s">
+    <div class="section-card">
+      <h3>Назначение системы</h3>
+      <p>KeePass — инструмент для безопасного хранения и управления паролями и учетными данными.</p>
+    </div>
+    <div class="section-card">
+      <h3>Функции тестировщика</h3>
+      <ul>
+        <li>Хранение учетных данных.</li>
+        <li>Передача паролей коллегам.</li>
+        <li>Контроль доступа к паролям.</li>
+      </ul>
+    </div>
+    <div class="section-card">
+      <h3>Особенности тестирования</h3>
+      <ul>
+        <li>Использование мастер-пароля.</li>
+        <li>Резервное копирование базы паролей.</li>
+      </ul>
+    </div>
+    <div class="section-card">
+      <h3>Частые ошибки</h3>
+      <ul>
+        <li>Потеря мастер-пароля.</li>
+        <li>Несанкционированный доступ.</li>
+      </ul>
+    </div>
+    <div class="section-card">
+      <h3>Инструменты</h3>
+      <ul>
+        <li>KeePass</li>
       </ul>
     </div>
   </div>
-</nav>
-<div class="container mt-5">
-  <h1>KeePass</h1>
-  <h5 class="mt-4">Назначение системы</h5>
-  <p>Хранение учетных данных.</p>
-
-  <h5 class="mt-4">Функции тестировщика</h5>
-  <ul>
-    <li>Хранение паролей.</li>
-    <li>Контроль доступа.</li>
-  </ul>
-
-  <h5 class="mt-4">Частые ошибки</h5>
-  <ul>
-    <li>Потеря доступа.</li>
-    <li>Несинхронизированная база.</li>
-  </ul>
-</div>
-<footer>
-  <div class="container">
-    <div class="footer-links">
-      <a href="contacts.html">Контакты</a> |
-      <a href="faq.html">FAQ</a> |
-      <a href="https://bankffin.kz/ru" target="_blank">Freedom Bank</a>
+  <footer class="animate__animated animate__fadeIn animate__delay-2s">
+    <div class="container">
+      <div class="footer-links mb-4">
+        <a href="contacts.html">Контакты</a>
+        <a href="faq.html">FAQ</a>
+        <a href="https://bankffin.kz/ru" target="_blank">Freedom Bank</a>
+      </div>
+      <div class="footer-contacts mb-3">
+        Email: <a href="mailto:support@freedombank.kz">support@freedombank.kz</a> | Телефон: +7 (776) 1 595 595
+      </div>
+      <div class="footer-copyright">
+        © 2024 Freedom Bank. Все права защищены.
+      </div>
     </div>
-    <div class="footer-contacts">
-      Email: <a href="mailto:support@freedombank.kz">support@freedombank.kz</a> | Телефон: +7 (776) 1 595 595
-    </div>
-    <div class="footer-copyright">
-      © 2024 Freedom Bank. Все права защищены.
-    </div>
-  </div>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
 </body>
 </html> 
