@@ -26,7 +26,11 @@
     @keyframes fadeInDropdown { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
     .dropdown-menu .dropdown-item { color: var(--freedom-green) !important; background: #fff !important; border-radius: 8px; margin: 2px 0; font-size: 1.08rem; font-weight: 600; padding: 0.6rem 1.2rem; transition: background 0.2s, color 0.2s; }
     .dropdown-menu .dropdown-item:hover, .dropdown-menu .dropdown-item:focus { background: var(--freedom-green-light) !important; color: var(--freedom-green-dark) !important; }
-    .page-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; background: var(--gradient-green); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: fadeInUp 1s both; }
+    .page-title {
+      font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; margin-top: 18px;
+      background: var(--gradient-green); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      animation: fadeInUp 1s both;
+    }
     .section-card { background: white; border-radius: 16px; padding: 32px 28px; margin-bottom: 32px; box-shadow: 0 10px 30px rgba(0, 153, 93, 0.1); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(0, 153, 93, 0.1); position: relative; overflow: hidden; animation: fadeInUp 1s both; }
     .section-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 15px 40px rgba(0, 153, 93, 0.18); }
     .section-card h3 { color: var(--freedom-green-dark); font-weight: 600; margin-bottom: 18px; }
@@ -88,8 +92,11 @@
       </div>
     </div>
   </nav>
-  <section class="hero-section" style="padding: 90px 0 30px; text-align: center;">
+  <section class="hero-section" style="padding: 120px 0 30px; text-align: center;">
     <div class="container">
+      <a href="javascript:history.back()" class="btn btn-success mb-3 animate__animated animate__fadeInLeft" style="background: var(--freedom-green); border: none; font-weight: 600; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,153,93,0.10); transition: background 0.2s, box-shadow 0.2s;">
+        ← Назад
+      </a>
       <h1 class="page-title animate__animated animate__fadeInDown">Graylog</h1>
     </div>
   </section>
